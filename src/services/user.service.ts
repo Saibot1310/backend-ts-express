@@ -89,10 +89,15 @@ export function createUserService() {
   return userRepository.update(id, data);
 }
 
+function deleteUser(id: number): boolean {
+  return userRepository.remove(id);
+}
+
   return {
     getUsers,
     getUserById,
     createUser,
     updateUser,
+    deleteUser,
   };
 }

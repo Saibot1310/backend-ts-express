@@ -31,10 +31,23 @@ export function createUserRepository() {
     return user;
   }
 
+  function remove(id: number): boolean {
+  const index = users.findIndex((user) => user.id === id);
+
+  if (index === -1) {
+    return false;
+  }
+
+  users.splice(index, 1);
+
+  return true;
+}
+
   return {
     findAll,
     findById,
     create,
     update,
+    remove,
   };
 }
