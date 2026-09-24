@@ -22,3 +22,9 @@ export function getUserById(req: Request, res: Response): void {
 
   res.status(200).json(user);
 }
+
+export function createUser(req: Request, res: Response): void {
+  const user = userService.createUser(req.body);
+
+  res.status(201).json(user);
+}
