@@ -15,6 +15,26 @@ export function createUserService() {
   }
 
   function createUser(data: CreateUserData): User {
+    if (!data.name || typeof data.name !== "string") {
+      throw new Error("Name is required");
+    }
+
+    if (!data.email || typeof data.email !== "string") {
+      throw new Error("Email is required");
+    }
+
+    if (typeof data.age !== "number" || data.age <= 0) {
+      throw new Error("Age must be a positive number");
+    }
+
+    const existingUser = userRepository
+      .findAll()
+      .find((user) => user.email === data.email);
+
+    if (existingUser) {
+      throw new Error("Email is already in use");
+    }
+
     const users = userRepository.findAll();
 
     const nextId =
