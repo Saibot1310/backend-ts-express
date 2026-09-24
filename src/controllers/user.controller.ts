@@ -43,3 +43,18 @@ export function updateUser(req: Request, res: Response): void {
 
   res.status(200).json(user);
 }
+
+export function deleteUser(req: Request, res: Response): void {
+  const id = Number(req.params.id);
+
+  const deleted = userService.deleteUser(id);
+
+  if (!deleted) {
+    res.status(404).json({
+      message: "User not found",
+    });
+    return;
+  }
+
+  res.status(204).send();
+}
