@@ -6,7 +6,12 @@ export function createUserRepository() {
     return users;
   }
 
+  function findById(id: number): User | undefined {
+    return users.find((user) => user.id === id);
+  }
+
   return {
     findAll,
+    findById,
   };
 }

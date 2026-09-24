@@ -8,3 +8,17 @@ export function getUsers(_req: Request, res: Response): void {
 
   res.status(200).json(users);
 }
+
+export function getUserById(req: Request, res: Response): void {
+  const id = Number(req.params.id);
+  const user = userService.getUserById(id);
+
+  if (!user) {
+    res.status(404).json({
+      message: "User not found",
+    });
+    return;
+  }
+
+  res.status(200).json(user);
+}

@@ -8,7 +8,12 @@ export function createUserService() {
     return userRepository.findAll();
   }
 
+  function getUserById(id: number): User | undefined {
+    return userRepository.findById(id);
+  }
+
   return {
     getUsers,
+    getUserById,
   };
 }
