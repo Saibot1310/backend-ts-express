@@ -16,9 +16,25 @@ export function createUserRepository() {
     return user;
   }
 
+  function update(
+    id: number,
+    data: Partial<Omit<User, "id">>,
+  ): User | undefined {
+    const user = findById(id);
+
+    if (!user) {
+      return undefined;
+    }
+
+    Object.assign(user, data);
+
+    return user;
+  }
+
   return {
     findAll,
     findById,
     create,
+    update,
   };
 }
