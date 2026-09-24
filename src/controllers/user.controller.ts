@@ -28,3 +28,18 @@ export function createUser(req: Request, res: Response): void {
 
   res.status(201).json(user);
 }
+
+export function updateUser(req: Request, res: Response): void {
+  const id = Number(req.params.id);
+
+  const user = userService.updateUser(id, req.body);
+
+  if (!user) {
+    res.status(404).json({
+      message: "User not found",
+    });
+    return;
+  }
+
+  res.status(200).json(user);
+}
