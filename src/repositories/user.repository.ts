@@ -10,8 +10,15 @@ export function createUserRepository() {
     return users.find((user) => user.id === id);
   }
 
+  function create(user: User): User {
+    users.push(user);
+
+    return user;
+  }
+
   return {
     findAll,
     findById,
+    create,
   };
 }
